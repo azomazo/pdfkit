@@ -44,7 +44,7 @@ class PDFKit
 
     args << (path || '-') # Write to file or stdout
 
-    args.map {|arg| %Q{"#{arg.shellescape}"}}
+    args.map {|arg| %Q{"#{arg.match(/\Ahttp/) ? arg : arg.shellescape}"}}
   end
 
   def executable
